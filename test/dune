@@ -1,2 +1,6 @@
-(test
- (name lambda))
+(library
+ (name lambda_test)
+ (libraries lambda core)
+ (preprocess
+  (pps ppx_inline_test ppx_expect))
+ (inline_tests))

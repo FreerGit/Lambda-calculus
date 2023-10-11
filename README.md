@@ -5,6 +5,7 @@ To run the interpreter run
 ```console
 foo@bar:~$ nix-shell --max-jobs auto
 ```
+Then use dune to build/run
 
 If you don't want to use nix then add the dependencies to opam manually I suppose.
 

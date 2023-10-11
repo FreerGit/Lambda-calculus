@@ -5,7 +5,7 @@
 (generate_opam_files true)
 
 (source
- (github username/reponame))
+ (github Freergit/lambda-calculus))
 
 (authors "Author Name")
 
@@ -16,7 +16,7 @@
 (documentation https://url/to/documentation)
 
 (package
- (name d)
+ (name lambda)
  (synopsis "A short synopsis")
  (description "A longer description")
  (depends ocaml dune)
