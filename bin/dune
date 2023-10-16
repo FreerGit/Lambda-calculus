@@ -2,3 +2,6 @@
  (public_name lambda_calculus)
  (name main)
  (libraries lib core))
+
+(menhir
+ (modules parser))

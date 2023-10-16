@@ -24,6 +24,8 @@ pkgs.mkShell {
       utop
       
       iter
+      menhir
+      sedlex
       ppx_deriving
       ppx_expect
       
