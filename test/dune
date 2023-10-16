@@ -1,6 +1,6 @@
 (library
- (name lambda_test)
- (libraries lambda core)
+ (name lambda_calculus_test)
+ (libraries lib core)
  (preprocess
-  (pps ppx_inline_test ppx_expect))
+  (pps ppx_inline_test ppx_expect ppx_deriving.show))
  (inline_tests))

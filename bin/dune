@@ -1,4 +1,4 @@
 (executable
- (public_name lambda)
+ (public_name lambda_calculus)
  (name main)
- (libraries lambda core))
+ (libraries lib core))

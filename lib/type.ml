@@ -4,6 +4,7 @@ type t =
       ; body_t : t
       }
   | TInt
+[@@deriving show { with_path = false }]
 
 let rec equal a b =
   match a, b with

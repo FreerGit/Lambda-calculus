@@ -1,2 +1,5 @@
 (library
- (name lambda))
+ (name lib)
+ (libraries core)
+ (preprocess
+  (pps ppx_deriving.show)))

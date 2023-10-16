@@ -5,7 +5,10 @@ module Context = Map.Make (String)
 let rec infer context expr =
   match expr with
   | Int _ -> TInt
-  | Variable name -> Context.find name context
+  | Variable name ->
+    (match Context.find_opt name context with
+     | Some t -> t
+     | None -> raise Interp.Type_error)
   | Abstraction { param; param_t; body } ->
     let context = Context.add param param_t context in
     let body_t = infer context body in
