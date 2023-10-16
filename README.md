@@ -1,5 +1,5 @@
 # Lambda Calculus
-Implementing lambda calculus in ocaml.
+Implementing Simply Typed Lambda Calculus in OCaml.
 
 To run the interpreter run
 ```console
@@ -9,7 +9,7 @@ Then use dune to build/run
 
 If you don't want to use nix then add the dependencies to opam manually I suppose.
 
-## What is it?
+## What is lambda calculus?
 In some sense lambda calculus is the simplest programming language, while being turing complete. The simplest form of lambda calclus is performed by constructing [lambda terms](https://en.wikipedia.org/wiki/Lambda_calculus#Lambda_terms) and performing [reduction](https://en.wikipedia.org/wiki/Lambda_calculus#Reduction) operations on those terms.
 
 ### Rules
@@ -107,7 +107,8 @@ If we try to perform reduction on this lambda term we get:
 And there we have recursion, it's kind of useless and to get recursion that changes between steps we use [Fixed-point combinator (Y-combinator)](https://en.wikipedia.org/wiki/Fixed-point_combinator#Y_combinator).
 
 
-## Informal
-Think of a function $f(x) = (\lambda x. \space x+2)$. Following the rules, we can apply by doing $(\lambda x. \space x+2)3$. This is the same as $f(3)$.
+## Simply Typed Lambda Calculus
+There are rules:
+[![rules](./images/typing_rules.png)](https://en.wikipedia.org/wiki/Simply_typed_lambda_calculus)
 
-Lambda calculus isn't to make anything useful, but rather to study how functions work.
+We really just want to introduce the notion of an arrow in the type system. For example, a function with type int -> int represents a function from integers to integers
