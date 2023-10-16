@@ -112,3 +112,15 @@ There are rules:
 [![rules](./images/typing_rules.png)](https://en.wikipedia.org/wiki/Simply_typed_lambda_calculus)
 
 We really just want to introduce the notion of an arrow in the type system. For example, a function with type int -> int represents a function from integers to integers
+
+
+## System F
+Finally, after implementing lambda calculus and simply typed lambda calculus, we can now implement System F. Which adds two more typing rules on top of simply typed lambda calculus and is also the base for languages such as Haskell. System F allows for polymorphism (terms that take types as arguments), eg. sort_list: ($\forall$ X.)  (X -> X -> bool) -> list(X) -> List(X). You are probably more familiar with concepts such as List<$T$> instead (It's atleast conceptually similar).
+
+The new rules are as follows:
+
+[![rules](./images/system_f.png)](https://en.wikipedia.org/wiki/System_F)
+
+Further reading and clarification: [system f paper](http://www.cs.columbia.edu/~sedwards/classes/2023/6998-spring-tlc/systemf.pdf).
+
+Sometimes Kinds are included in System F, we will not be. Kinds are sort of functions at the type level. A popular example would be "Maybe". In Haskell Maybe would have kind * -> *, eg. a type level function, a type constructor. Maybe is not an value, but Maybe Int is.

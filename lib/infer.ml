@@ -20,4 +20,12 @@ let rec infer context expr =
      | TInt -> raise Interp.Type_error
      | TArrow { param_t; body_t } when Type.equal param_t argument_t -> body_t
      | _ -> raise Interp.Type_error)
+  | Type_abstraction { param; body } ->
+    let return_t = infer context body in
+    TForall { param; return_t }
+  | Type_application { func; argument } ->
+    let func_t = infer context func in
+    (match func_t with
+     | TForall { param; return_t } -> Type.type_subst return_t ~a:param ~b:argument
+     | _ -> raise Interp.Type_error)
 ;;
