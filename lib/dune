@@ -1,5 +1,8 @@
 (library
  (name lib)
- (libraries core)
+ (libraries core sedlex menhirLib)
  (preprocess
-  (pps ppx_deriving.show)))
+  (pps ppx_deriving.show sedlex.ppx)))
+
+(menhir
+ (modules parser))

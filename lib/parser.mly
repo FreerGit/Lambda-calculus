@@ -1,5 +1,5 @@
-%{ open Lib.Type
-   open Lib.Expr %}
+%{ open Type
+   open Expr %}
 %token <string> IDENT
 %token <int> INT
 %token LAMBDA
@@ -11,8 +11,8 @@
 %token RPARENS
 %token EOF
 
-%start <Lib.Expr.t option> expr_opt
-%start <Lib.Type.t option> typ_opt
+%start <Expr.t option> expr_opt
+%start <Type.t option> typ_opt
 
 %%
 

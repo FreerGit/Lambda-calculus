@@ -25,6 +25,7 @@ pkgs.mkShell {
       
       iter
       menhir
+      menhirLib
       sedlex
       ppx_deriving
       ppx_expect
