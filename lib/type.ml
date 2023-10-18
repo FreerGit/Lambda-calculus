@@ -9,7 +9,17 @@ type t =
       { param : string
       ; return_t : t
       }
-[@@deriving show { with_path = false }]
+
+let rec pp fmt t =
+  let open Format in
+  match t with
+  | TInt -> fprintf fmt "int"
+  | TVar str -> fprintf fmt "%s" str
+  | TArrow { param_t = TArrow _ as param_t; body_t } ->
+    fprintf fmt "(%a) -> %a" pp param_t pp body_t
+  | TArrow { param_t; body_t } -> fprintf fmt "%a -> %a" pp param_t pp body_t
+  | TForall { param; return_t } -> fprintf fmt "∀%s.%a" param pp return_t
+;;
 
 let rec equal a b =
   match a, b with

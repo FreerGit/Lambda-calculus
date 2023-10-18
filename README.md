@@ -12,6 +12,16 @@ Then use dune to build/run
 
 If you don't want to use nix then add the dependencies to opam manually I suppose.
 
+Lastly to see examples of the interpreter go to the test directory, there are ppx tests there.
+
+## Examples of functions in System F
+
+1. $(\lambda id:\forall x.x \rightarrow x.id)$ this is interpreted as $(\forall x.x \rightarrow x \rightarrow \forall x.x \rightarrow x)$. Already we have polymophism, this is a identity function. A identity function just returns the argument, since it's polymorphic, that can be a string, int, double, etc.
+
+2. $(\lambda x:T \rightarrow T.x)$ which is typed to: $((T \rightarrow T) \rightarrow T \rightarrow T)$
+
+3. $((\Lambda a.\lambda :a \rightarrow a.x) \space [int])$ which is typed to: $((int \rightarrow int) \rightarrow int \rightarrow int)$, we have now narrowed the type from a polymorphic one to a explicit one. We pass a type in a similar way we do a normal arugment! It's a function that takes a type as its argument.
+
 ## What is lambda calculus?
 
 In some sense lambda calculus is the simplest programming language, while being turing complete. The simplest form of lambda calclus is performed by constructing [lambda terms](https://en.wikipedia.org/wiki/Lambda_calculus#Lambda_terms) and performing [reduction](https://en.wikipedia.org/wiki/Lambda_calculus#Reduction) operations on those terms.

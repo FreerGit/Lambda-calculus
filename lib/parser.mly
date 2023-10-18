@@ -2,11 +2,15 @@
    open Expr %}
 %token <string> IDENT
 %token <int> INT
+%token ULAMBDA
 %token LAMBDA
+%token FORALL
 %token COLON
 %token DOT
 %token ARROW
 
+%token LBRACKET
+%token RBRACKET
 %token LPARENS
 %token RPARENS
 %token EOF
@@ -22,11 +26,13 @@ let typ_opt :=
 
 let sub_typ ==
   | i = IDENT;
-    { match i with | "int" -> TInt | _ -> failwith "invalid type" }
+    { match i with | "int" -> TInt | name -> TVar name }
   | LPARENS; t = typ; RPARENS; { t }
 
 let typ :=
   | sub_typ
+  | FORALL; p = IDENT; DOT; t = typ;
+    { TForall { param = p; return_t = t } }
   | t1 = sub_typ; ARROW; t2 = typ;
     { TArrow { param_t = t1; body_t = t2 } }
 
@@ -41,6 +47,8 @@ let terminal ==
 let abstraction ==
   | LAMBDA; p = IDENT; COLON; t = typ; DOT; e = expr;
     { Abstraction { param = p; param_t = t; body = e } }
+  | ULAMBDA; p = IDENT; DOT; e = expr;
+    { Type_abstraction { param = p; body = e } }
 
 let sub_expr :=
   | terminal
@@ -50,6 +58,8 @@ let application :=
   | sub_expr
   | e1 = application; e2 = sub_expr;
     { Application { func = e1; argument = e2 } }
+  | e = application; LBRACKET; t = typ; RBRACKET;
+    { Type_application { func = e; argument = t } }
 
 let expr :=
   | abstraction

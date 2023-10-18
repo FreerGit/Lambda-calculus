@@ -4,7 +4,7 @@ open Parser
 exception Invalid_token
 
 let whitespace = [%sedlex.regexp? Plus (' ' | '\n' | '\t')]
-let alpha = [%sedlex.regexp? 'a' .. 'z']
+let alpha = [%sedlex.regexp? Plus ('a' .. 'z' | 'A' .. 'Z')]
 let number = [%sedlex.regexp? '0' .. '9']
 
 (* let lambda = [%sedlex.regexp? 'λ'] *)
@@ -19,10 +19,20 @@ let rec tokenizer buf =
   | ':' -> COLON
   | '.' -> DOT
   | "->" -> ARROW
+  | '[' -> LBRACKET
+  | ']' -> RBRACKET
   | '(' -> LPARENS
   | ')' -> RPARENS
-  | any -> if Utf8.lexeme buf = "λ" then LAMBDA else raise Invalid_token
   | eof -> EOF
+  | any ->
+    let char = Utf8.lexeme buf in
+    if char = "λ"
+    then LAMBDA
+    else if char = "Λ"
+    then ULAMBDA
+    else if char = "∀"
+    then FORALL
+    else raise Invalid_token
   | _ -> raise Invalid_token
 ;;
 
