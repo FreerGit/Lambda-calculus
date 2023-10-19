@@ -39,6 +39,16 @@ let%expect_test _ =
 ;;
 
 let%expect_test _ =
+  print_expr "(λx:int.x) 1";
+  [%expect {| Application {func = (Variable "f"); argument = (Variable "abc")} |}]
+;;
+
+let%expect_test _ =
+  print_expr "((λx:int.λy:int.x)y)z";
+  [%expect {| Application {func = (Variable "f"); argument = (Variable "abc")} |}]
+;;
+
+let%expect_test _ =
   print_expr "(λx:int.x)";
   print_expr "λx:int.x";
   [%expect
