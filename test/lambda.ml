@@ -40,12 +40,23 @@ let%expect_test _ =
 
 let%expect_test _ =
   print_expr "(λx:int.x) 1";
-  [%expect {| Application {func = (Variable "f"); argument = (Variable "abc")} |}]
+  [%expect {|
+    Application {
+      func = Abstraction {param = "x"; param_t = int; body = (Variable "x")};
+      argument = (Int 1)} |}]
 ;;
 
 let%expect_test _ =
   print_expr "((λx:int.λy:int.x)y)z";
-  [%expect {| Application {func = (Variable "f"); argument = (Variable "abc")} |}]
+  [%expect {|
+    Application {
+      func =
+      Application {
+        func =
+        Abstraction {param = "x"; param_t = int;
+          body = Abstraction {param = "y"; param_t = int; body = (Variable "x")}};
+        argument = (Variable "y")};
+      argument = (Variable "z")} |}]
 ;;
 
 let%expect_test _ =
