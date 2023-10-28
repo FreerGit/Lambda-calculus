@@ -1,18 +1,25 @@
 # Lambda Calculus
 
-Implementing Simply Typed Lambda Calculus in OCaml.
+Implementing System F in OCaml.
 
-To run the interpreter run
+To run the interpreter:
 
 ```console
 foo@bar:~$ nix-shell --max-jobs auto
 ```
-
-Then use dune to build/run
-
 If you don't want to use nix then add the dependencies to opam manually I suppose.
 
-Lastly to see examples of the interpreter go to the test directory, there are ppx tests there.
+To play around with the interpreter:
+```console
+foo@bar:~$ dune build
+foo@bar:~$ dune exec main
+```
+
+Altough I recommend to just add tests, ppx test are available in [test/lambda.ml](/test/lambda.ml)
+
+```console
+foo@bar:~$ dune test
+```
 
 ## Examples of functions in System F
 
